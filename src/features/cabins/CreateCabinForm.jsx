@@ -34,7 +34,7 @@ function CreateCabinForm() {
 	});
 
 	function onSubmit(data) {
-		mutate(data);
+		mutate({ ...data, image: data.image[0] });
 	}
 
 	function onError(errors) {
@@ -47,6 +47,7 @@ function CreateCabinForm() {
 				<Input
 					type='text'
 					id='name'
+					disabled={isAdded}
 					{...register('name', { required: 'This field is required' })}
 				/>
 			</FormRow>
@@ -56,6 +57,7 @@ function CreateCabinForm() {
 					type='number'
 					id='maxCapacity'
 					min='0'
+					disabled={isAdded}
 					{...register('maxCapacity', {
 						required: 'This field is required',
 						min: {
@@ -71,6 +73,7 @@ function CreateCabinForm() {
 					type='number'
 					id='regularPrice'
 					min='0'
+					disabled={isAdded}
 					{...register('regularPrice', {
 						required: 'This field is required',
 						min: {
@@ -87,6 +90,7 @@ function CreateCabinForm() {
 					id='discount'
 					defaultValue={0}
 					min='0'
+					disabled={isAdded}
 					{...register('discount', {
 						required: 'This field is required',
 						validate: (value) =>
@@ -101,17 +105,23 @@ function CreateCabinForm() {
 					type='text'
 					id='description'
 					defaultValue=''
+					disabled={isAdded}
 					{...register('description', { required: 'This field is required' })}
 				/>
 			</FormRow>
 
 			<FormRow label={'Cabin photo'} error={errors?.image?.message}>
-				<FileInput id='image' accept='image/*' />
+				<FileInput
+					disabled={isAdded}
+					id='image'
+					accept='image/*'
+					{...register('image', { required: 'This field is required' })}
+				/>
 			</FormRow>
 
 			<FormRow>
 				{/* type is an HTML attribute! */}
-				<Button variation='secondary' type='reset'>
+				<Button disabled={isAdded} variation='secondary' type='reset'>
 					Cancel
 				</Button>
 				<Button disabled={isAdded}>Add cabin</Button>
