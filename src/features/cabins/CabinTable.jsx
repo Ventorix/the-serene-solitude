@@ -3,6 +3,7 @@ import { useCabins } from './useCabins';
 import Spinner from '../../ui/Spinner';
 import CabinRow from './CabinRow';
 import Table from '../../ui/Table';
+import Menus from '../../ui/Menus';
 
 function CabinTable() {
 	const { isLoading, cabins } = useCabins();
@@ -12,18 +13,20 @@ function CabinTable() {
 	if (isLoading) return <Spinner />;
 
 	return (
-		<Table columns={defaultColumns}>
-			<Table.Header>
-				<div>Image</div>
-				<div>Cabin</div>
-				<div>Capacity</div>
-				<div>Price</div>
-				<div>Discount</div>
-				<div>Actions</div>
-			</Table.Header>
+		<Menus>
+			<Table columns={defaultColumns}>
+				<Table.Header>
+					<div>Image</div>
+					<div>Cabin</div>
+					<div>Capacity</div>
+					<div>Price</div>
+					<div>Discount</div>
+					<div>Actions</div>
+				</Table.Header>
 
-			<Table.Body data={cabins} render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />} />
-		</Table>
+				<Table.Body data={cabins} render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />} />
+			</Table>
+		</Menus>
 	);
 }
 

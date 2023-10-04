@@ -5,6 +5,7 @@ import CreateCabinForm from './CreateCabinForm';
 import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 import Table from '../../ui/Table';
+import Menus from '../../ui/Menus';
 
 import { formatCurrency } from '../../utils/helpers';
 import { useDeleteCabin } from './useDeleteCabin';
@@ -74,32 +75,36 @@ function CabinRow({ cabin }) {
 			<Price>{formatCurrency(regularPrice)}</Price>
 			{discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
 			<div>
-				<button onClick={handleDuplicate} disabled={isAdding}>
-					<HiSquare2Stack />
-				</button>
-
 				<Modal>
-					<Modal.Open opens='edit'>
-						<button disabled={isDeleting}>
-							<HiPencil />
-						</button>
-					</Modal.Open>
-					<Modal.Window name={'edit'}>
-						<CreateCabinForm cabinToEdit={cabin} />
-					</Modal.Window>
+					<Menus.Menu>
+						<Menus.Toggle id={cabinId} />
 
-					<Modal.Open opens={'delete'}>
-						<button>
-							<HiTrash />
-						</button>
-					</Modal.Open>
-					<Modal.Window name={'delete'}>
-						<ConfirmDelete
-							resourceName={`cabin ${name}`}
-							disabled={isDeleting}
-							onConfirm={() => removeCabin(cabinId)}
-						/>
-					</Modal.Window>
+						<Menus.List id={cabinId}>
+							<Menus.Button onClick={handleDuplicate} icon={<HiSquare2Stack />}>
+								Duplicate
+							</Menus.Button>
+
+							<Modal.Open opens='edit'>
+								<Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+							</Modal.Open>
+
+							<Modal.Open opens={'delete'}>
+								<Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+							</Modal.Open>
+						</Menus.List>
+
+						<Modal.Window name={'edit'}>
+							<CreateCabinForm cabinToEdit={cabin} />
+						</Modal.Window>
+
+						<Modal.Window name={'delete'}>
+							<ConfirmDelete
+								resourceName={`cabin ${name}`}
+								disabled={isDeleting}
+								onConfirm={() => removeCabin(cabinId)}
+							/>
+						</Modal.Window>
+					</Menus.Menu>
 				</Modal>
 			</div>
 		</Table.Row>
