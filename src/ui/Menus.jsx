@@ -71,6 +71,7 @@ function Menus({ children }) {
 	const [position, setPosition] = useState(null);
 
 	const close = () => setOpenId('');
+
 	const open = setOpenId;
 
 	return (
@@ -82,7 +83,7 @@ function Menus({ children }) {
 
 function List({ id, children }) {
 	const { openId, close, position } = useContext(MenusContext);
-	const { ref } = useOutsideClick(close);
+	const { ref } = useOutsideClick(close, false);
 
 	if (openId !== id) return null;
 
@@ -98,8 +99,9 @@ function Toggle({ id }) {
 	const { openId, open, close, setPosition } = useContext(MenusContext);
 
 	function handleClick(e) {
+		e.stopPropagation();
+
 		const rect = e.target.closest('button').getBoundingClientRect();
-		console.log(rect);
 
 		setPosition({ x: innerWidth - rect.width - rect.x, y: rect.height + rect.y + 8 });
 		openId === '' || openId !== id ? open(id) : close();
@@ -122,7 +124,6 @@ function Button({ children, icon, onClick }) {
 	return (
 		<li>
 			<StyledButton onClick={handleClick}>
-				{' '}
 				{icon}
 				<span>{children}</span>
 			</StyledButton>
