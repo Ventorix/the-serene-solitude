@@ -5,6 +5,7 @@ import Spinner from '../../ui/Spinner';
 import CabinRow from './CabinRow';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
+import Empty from '../../ui/Empty';
 
 function CabinTable() {
 	const { isLoading, cabins } = useCabins();
@@ -13,6 +14,7 @@ function CabinTable() {
 	const defaultColumns = '1fr 1.8fr 2.2fr 1fr 1fr 1fr';
 
 	if (isLoading) return <Spinner />;
+	if (!cabins.length) return <Empty resource={'cabins'} />;
 
 	// 1. Filter
 	const filterValue = searchParams.get('discount') || 'all';
