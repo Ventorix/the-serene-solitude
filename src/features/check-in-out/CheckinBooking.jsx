@@ -34,7 +34,7 @@ function CheckinBooking() {
 
 	useEffect(() => setConfirmPaid(booking?.isPaid || false), [booking?.isPaid]);
 
-	const { checkin, isCheckinngIn } = useCheckIn();
+	const { checkin, isCheckingIn } = useCheckIn();
 
 	if (isLoading || isLoadingSettings) return <Spinner />;
 
@@ -87,7 +87,7 @@ function CheckinBooking() {
 			<Box>
 				<Checkbox
 					id={'confirm'}
-					disabled={confirmPaid || isCheckinngIn}
+					disabled={confirmPaid || isCheckingIn}
 					checked={confirmPaid}
 					onChange={() => setConfirmPaid((paid) => !paid)}>
 					I confirm that {guests.fullName} has paid the total amount of {''}
@@ -98,7 +98,7 @@ function CheckinBooking() {
 				</Checkbox>
 			</Box>
 			<ButtonGroup>
-				<Button onClick={handleCheckin} disabled={!confirmPaid || isCheckinngIn}>
+				<Button onClick={handleCheckin} disabled={!confirmPaid || isCheckingIn}>
 					Check in booking #{bookingId}
 				</Button>
 				<Button variation='secondary' onClick={moveBack}>
