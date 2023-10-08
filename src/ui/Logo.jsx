@@ -7,6 +7,7 @@ const StyledLogo = styled.div`
 const Img = styled.img`
 	height: 14.6rem;
 	width: auto;
+	border-radius: 25%;
 `;
 
 function Logo() {
