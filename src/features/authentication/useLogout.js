@@ -14,7 +14,7 @@ export function useLogout() {
 		},
 
 		onError: (err) => {
-			console.log('Error', err);
+			console.error('Error', err);
 			toast.error(err.message);
 		},
 	});
