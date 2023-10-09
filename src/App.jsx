@@ -15,9 +15,10 @@ import Users from './pages/Users';
 import Account from './pages/Account';
 import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
+import ProtectedRoute from './ui/ProtectedRoute';
 
 import { Toaster } from 'react-hot-toast';
-import ProtectedRoute from './ui/ProtectedRoute';
+import DarkModeProvider from './context/DarkModeContext';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -38,7 +39,9 @@ function App() {
 					<Route
 						element={
 							<ProtectedRoute>
-								<AppLayout />
+								<DarkModeProvider>
+									<AppLayout />
+								</DarkModeProvider>
 							</ProtectedRoute>
 						}>
 						<Route index element={<Navigate replace to='dashboard' />} />
