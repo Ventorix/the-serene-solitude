@@ -1,25 +1,30 @@
 import { useForm } from 'react-hook-form';
+
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
+
+import { useSignup } from './useSignup';
 
 // FullName regex: /^[a-zA-Z]+ [a-zA-Z]+$/
 // Email regex: /\S+@\S+\.\S+/
 // Password regex: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
 
 function SignupForm() {
-	const { register, formState, getValues, handleSubmit } = useForm();
+	const { register, formState, getValues, handleSubmit, reset } = useForm();
+	const { signup, isLoading } = useSignup();
 	const { errors } = formState;
 
-	function onSubmit(data) {
-		console.log(data);
+	function onSubmit({ fullName, email, password }) {
+		signup({ fullName, email, password }, { onSettled: () => reset() });
 	}
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
 			<FormRow label='Full name' error={errors?.fullName?.message}>
 				<Input
+					disabled={isLoading}
 					autoComplete='name'
 					type='text'
 					id='fullName'
@@ -35,6 +40,7 @@ function SignupForm() {
 
 			<FormRow label='Email address' error={errors?.email?.message}>
 				<Input
+					disabled={isLoading}
 					autoComplete='email'
 					type='email'
 					id='email'
@@ -47,6 +53,7 @@ function SignupForm() {
 
 			<FormRow label='Password (min 8 characters)' error={errors?.password?.message}>
 				<Input
+					disabled={isLoading}
 					autoComplete='new-password'
 					type='password'
 					id='password'
@@ -63,6 +70,7 @@ function SignupForm() {
 
 			<FormRow label='Repeat password' error={errors?.passwordConfirm?.message}>
 				<Input
+					disabled={isLoading}
 					autoComplete='new-password'
 					type='password'
 					id='passwordConfirm'
@@ -75,10 +83,10 @@ function SignupForm() {
 
 			<FormRow>
 				{/* type is an HTML attribute! */}
-				<Button variation='secondary' type='reset'>
+				<Button variation='secondary' type='reset' disabled={isLoading}>
 					Cancel
 				</Button>
-				<Button>Create new user</Button>
+				<Button disabled={isLoading}>Create new user</Button>
 			</FormRow>
 		</Form>
 	);
