@@ -67,6 +67,7 @@ function SalesChart({ bookings, numDays }) {
 			<ResponsiveContainer height={300} width={'100%'}>
 				<AreaChart data={data}>
 					<XAxis
+						dy={10}
 						dataKey={'label'}
 						tick={{ fill: colors.text }}
 						tickLine={{ stroke: colors.text }}
