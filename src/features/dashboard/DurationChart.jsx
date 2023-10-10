@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import Heading from '../../ui/Heading';
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Sector, Tooltip } from 'recharts';
 import { useDarkMode } from '../../context/DarkModeContext';
+import { useCallback, useState } from 'react';
 
 const ChartBox = styled.div`
 	/* Box */
 	background-color: var(--color-grey-0);
 	border: 1px solid var(--color-grey-100);
 	border-radius: var(--border-radius-md);
-
 	padding: 2.4rem 3.2rem;
 	grid-column: 3 / span 2;
 
@@ -18,6 +18,10 @@ const ChartBox = styled.div`
 
 	& .recharts-pie-label-text {
 		font-weight: 600;
+	}
+
+	& .recharts-wrapper > svg > g > g {
+		outline: none !important;
 	}
 `;
 
@@ -132,10 +136,61 @@ function prepareData(startData, stays) {
 	return data;
 }
 
+function CustomTooltip({ active, payload, totalValue, label, style }) {
+	if (active) {
+		const percent = Math.round((payload[0].value / totalValue) * 100);
+
+		return (
+			<div
+				className='custom-tooltip'
+				style={{
+					padding: '5px',
+					borderRadius: '6px',
+					...style,
+				}}>
+				<label>{`${payload[0].name} : ${payload[0].value} (${percent}%)`}</label>
+			</div>
+		);
+	}
+	return null;
+}
+
+const renderActiveShape = (props) => {
+	const RADIAN = Math.PI / 180;
+
+	const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, style } = props;
+
+	const sin = Math.sin(-RADIAN * midAngle);
+	const cos = Math.cos(-RADIAN * midAngle);
+	const sx = cx + (outerRadius - 100) * cos;
+	const sy = cy + (outerRadius - 100) * sin;
+
+	return (
+		<g>
+			<Sector
+				cx={sx}
+				cy={sy}
+				innerRadius={innerRadius}
+				outerRadius={outerRadius}
+				startAngle={startAngle}
+				endAngle={endAngle}
+				fill={fill}
+				style={style}
+			/>
+		</g>
+	);
+};
+
 function DurationChart({ confirmedStays }) {
+	const [activeIndex, setActiveIndex] = useState(-1);
+
 	const { isDarkMode } = useDarkMode();
+
 	const startData = isDarkMode ? startDataDark : startDataLight;
+
 	const data = prepareData(startData, confirmedStays);
+
+	const totalValue = data.reduce((acc, cur) => acc + cur.value, 0);
 
 	const colors = isDarkMode
 		? {
@@ -147,6 +202,10 @@ function DurationChart({ confirmedStays }) {
 				background: '#fff',
 		  };
 
+	const onPieEnter = useCallback((_, index) => setActiveIndex(index), [setActiveIndex]);
+
+	const onPieLeave = useCallback(() => setActiveIndex(null), []);
+
 	return (
 		<ChartBox>
 			<Heading as='h2'>Stay duration summary</Heading>
@@ -157,18 +216,39 @@ function DurationChart({ confirmedStays }) {
 						data={data}
 						nameKey={'duration'}
 						dataKey={'value'}
+						activeIndex={activeIndex}
+						activeShape={renderActiveShape}
 						innerRadius={85}
 						outerRadius={110}
-						cx={'40%'}
+						cx={'50%'}
 						cy={'50%'}
-						paddingAngle={3}>
-						{data.map((entry) => (
-							<Cell fill={entry.color} stroke={entry.color} key={entry.color} />
+						paddingAngle={3}
+						onMouseEnter={onPieEnter}
+						onMouseLeave={onPieLeave}>
+						{data.map((entry, index) => (
+							<Cell
+								fill={entry.color}
+								stroke={entry.color}
+								key={entry.color}
+								style={{
+									filter: `drop-shadow(0px 0px 5px ${
+										startData.at((index + 1) % startData.length).color
+									}`,
+								}}
+							/>
 						))}
 					</Pie>
 					<Tooltip
-						itemStyle={{ color: colors.text }}
-						contentStyle={{ backgroundColor: colors.background }}
+						content={
+							<CustomTooltip
+								totalValue={totalValue}
+								style={{
+									backgroundColor: colors.background,
+									color: colors.text,
+									border: `2px solid ${colors.text}`,
+								}}
+							/>
+						}
 					/>
 					<Legend
 						verticalAlign='middle'
