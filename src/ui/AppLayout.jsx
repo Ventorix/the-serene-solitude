@@ -1,7 +1,11 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+
+import styled from 'styled-components';
+
 import Sidebar from './Sidebar';
 import Header from './Header';
-import styled from 'styled-components';
+import FullPageSpinner from './FullPageSpinner';
 
 const StyledAppLayout = styled.div`
 	display: grid;
@@ -32,7 +36,9 @@ function AppLayout() {
 
 			<Main>
 				<Container>
-					<Outlet />
+					<Suspense fallback={<FullPageSpinner />}>
+						<Outlet />
+					</Suspense>
 				</Container>
 			</Main>
 		</StyledAppLayout>

@@ -175,7 +175,7 @@ const renderActiveShape = (props) => {
 				startAngle={startAngle}
 				endAngle={endAngle}
 				fill={fill}
-				style={style}
+				style={{ ...style }}
 			/>
 		</g>
 	);
@@ -202,7 +202,7 @@ function DurationChart({ confirmedStays }) {
 				background: '#fff',
 		  };
 
-	const onPieEnter = useCallback((_, index) => setActiveIndex(index), [setActiveIndex]);
+	const onPieEnter = useCallback((_, index) => setActiveIndex(index), []);
 
 	const onPieLeave = useCallback(() => setActiveIndex(null), []);
 
@@ -218,6 +218,7 @@ function DurationChart({ confirmedStays }) {
 						dataKey={'value'}
 						activeIndex={activeIndex}
 						activeShape={renderActiveShape}
+						animationDuration={3000}
 						innerRadius={85}
 						outerRadius={110}
 						cx={'50%'}
