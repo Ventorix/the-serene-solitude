@@ -108,7 +108,7 @@ function Toggle({ id }) {
 	}
 
 	return (
-		<StyledToggle onClick={handleClick}>
+		<StyledToggle title='Menu' aria-label='Menu' onClick={handleClick}>
 			<HiEllipsisVertical />
 		</StyledToggle>
 	);

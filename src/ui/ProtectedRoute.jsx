@@ -1,16 +1,7 @@
-import styled from 'styled-components';
-import Spinner from './Spinner';
-import { useUser } from '../features/authentication/useUser';
-import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-
-const FullPage = styled.div`
-	height: 100vh;
-	background-color: var(--color-grey-50);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`;
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../features/authentication/useUser';
+import FullPageSpinner from './FullPageSpinner';
 
 function ProtectedRoute({ children }) {
 	const navigate = useNavigate();
@@ -24,12 +15,7 @@ function ProtectedRoute({ children }) {
 	}, [isAuthenticated, isLoading, navigate]);
 
 	// 3. While loading show a spinner
-	if (isLoading)
-		return (
-			<FullPage>
-				<Spinner />
-			</FullPage>
-		);
+	if (isLoading) return <FullPageSpinner />;
 
 	// 4. If there IS a user then render the app
 	if (isAuthenticated) return children;

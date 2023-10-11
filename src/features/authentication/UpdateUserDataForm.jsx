@@ -70,7 +70,7 @@ function UpdateUserDataForm() {
 				<Button type='reset' variation='secondary' onClick={reset} disabled={isUpdating}>
 					Cancel
 				</Button>
-				<Button disabled={isUpdating}>Update account</Button>
+				<Button disabled={isUpdating}>Update user info</Button>
 			</FormRow>
 		</Form>
 	);
