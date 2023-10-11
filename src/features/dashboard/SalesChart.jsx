@@ -23,6 +23,28 @@ const StyledSalesChart = styled(DashboardBox)`
 	}
 `;
 
+function CustomTooltip({ active, payload, label, style }) {
+	if (active && payload && payload.length) {
+		return (
+			<div
+				className='custom-tooltip'
+				style={{
+					padding: '5px',
+					borderRadius: '6px',
+					...style,
+				}}>
+				<p className='label'>{`${label}`}</p>
+				{payload.map((elem, index) => (
+					<div key={index}>
+						<div style={{ color: elem.fill }}>{`${elem.name} : ${elem.value}`}</div>
+					</div>
+				))}
+			</div>
+		);
+	}
+	return null;
+}
+
 function SalesChart({ bookings, numDays }) {
 	const { isDarkMode } = useDarkMode();
 
@@ -51,8 +73,8 @@ function SalesChart({ bookings, numDays }) {
 				background: '#18212f',
 		  }
 		: {
-				totalSales: { stroke: '#4f46e5', fill: '#c7d2fe' },
-				extrasSales: { stroke: '#16a34a', fill: '#dcfce7' },
+				totalSales: { stroke: '#4f46e5', fill: '#687ccb' },
+				extrasSales: { stroke: '#16a34a', fill: '#61b980' },
 				text: '#374151',
 				background: '#fff',
 		  };
@@ -74,7 +96,17 @@ function SalesChart({ bookings, numDays }) {
 					/>
 					<YAxis unit={'$'} tick={{ fill: colors.text }} tickLine={{ stroke: colors.text }} />
 					<CartesianGrid strokeDasharray={4} />
-					<Tooltip contentStyle={{ backgroundColor: colors.background }} />
+					<Tooltip
+						content={
+							<CustomTooltip
+								style={{
+									backgroundColor: colors.background,
+									color: colors.text,
+									border: `2px solid ${colors.text}`,
+								}}
+							/>
+						}
+					/>
 					<Area
 						dataKey={'totalSales'}
 						type={'monotone'}
