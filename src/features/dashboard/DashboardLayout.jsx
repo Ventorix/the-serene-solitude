@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import Spinner from '../../ui/Spinner';
 
 import { useResentBookings } from './useRecentBookings';
 import { useResentStays } from './useRecentStays';
-import Stats from './Stats';
 import { useCabins } from '../cabins/useCabins';
+
+import Spinner from '../../ui/Spinner';
+import Stats from './Stats';
 import SalesChart from './SalesChart';
 import DurationChart from './DurationChart';
 import TodayActivity from '../check-in-out/TodayActivity';

@@ -8,14 +8,24 @@ const StyledSelect = styled.select`
 	border-radius: var(--border-radius-sm);
 	background-color: var(--color-grey-0);
 	font-weight: 500;
+	cursor: pointer;
 	box-shadow: var(--shadow-sm);
+
+	&:hover {
+		background-color: var(--color-grey-100);
+	}
 `;
 
 function Select({ options, value, onChange, type }) {
 	return (
-		<StyledSelect value={value} type={type} onChange={onChange}>
+		<StyledSelect
+			title='Sort by'
+			value={value}
+			type={type}
+			onChange={onChange}
+			aria-label='Sort by'>
 			{options.map((option) => (
-				<option value={option.value} key={option.value}>
+				<option aria-label='Sort option' value={option.value} key={option.value}>
 					{option.label}
 				</option>
 			))}
