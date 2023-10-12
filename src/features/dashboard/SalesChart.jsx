@@ -12,15 +12,20 @@ import {
 } from 'recharts';
 import { useDarkMode } from '../../context/DarkModeContext';
 import { eachDayOfInterval, format, isSameDay, subDays } from 'date-fns';
+import { media } from '../../styles/breakpoints';
 
 const StyledSalesChart = styled(DashboardBox)`
-	grid-column: 1 / -1;
+	grid-area: SalesChart;
 
 	/* Hack to change grid line colors */
 	& .recharts-cartesian-grid-horizontal line,
 	& .recharts-cartesian-grid-vertical line {
 		stroke: var(--color-grey-300);
 	}
+
+	${media.xxs`
+		padding: 1.2rem;
+	`}
 `;
 
 function CustomTooltip({ active, payload, label, style }) {

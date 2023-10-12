@@ -3,6 +3,7 @@ import Heading from '../../ui/Heading';
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Sector, Tooltip } from 'recharts';
 import { useDarkMode } from '../../context/DarkModeContext';
 import { useCallback, useState } from 'react';
+import { media } from '../../styles/breakpoints';
 
 const ChartBox = styled.div`
 	/* Box */
@@ -10,7 +11,7 @@ const ChartBox = styled.div`
 	border: 1px solid var(--color-grey-100);
 	border-radius: var(--border-radius-md);
 	padding: 2.4rem 3.2rem;
-	grid-column: 3 / span 2;
+	grid-area: PieChart;
 
 	& > *:first-child {
 		margin-bottom: 1.6rem;
@@ -23,6 +24,44 @@ const ChartBox = styled.div`
 	& .recharts-wrapper > svg > g > g {
 		outline: none !important;
 	}
+
+	.recharts-default-legend > li {
+		margin-right: 0 !important;
+	}
+
+	${media.lg`
+	.recharts-default-legend {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		margin-left:15px !important;
+	}
+	`}
+
+	${media.tb`
+	.recharts-default-legend > li > span {
+			font-size: 1.3rem;
+		}
+	`}
+
+	${media.xs`
+	.recharts-default-legend > li > span {
+			font-size: 1.1rem;
+		}
+	`}
+
+	${media.xxs`
+	.recharts-default-legend {
+		gap: 0;
+	}
+	.recharts-default-legend > li > span {
+			font-size: 0.9rem;
+		}
+	.recharts-legend-item > svg {
+		height: 6px;
+		width: 6px;
+	}
+	`}
 `;
 
 const startDataLight = [
@@ -162,8 +201,8 @@ const renderActiveShape = (props) => {
 
 	const sin = Math.sin(-RADIAN * midAngle);
 	const cos = Math.cos(-RADIAN * midAngle);
-	const sx = cx + (outerRadius - 100) * cos;
-	const sy = cy + (outerRadius - 100) * sin;
+	const sx = cx + (outerRadius / 7) * cos;
+	const sy = cy + (outerRadius / 7) * sin;
 
 	return (
 		<g>
@@ -219,8 +258,8 @@ function DurationChart({ confirmedStays }) {
 						activeIndex={activeIndex}
 						activeShape={renderActiveShape}
 						animationDuration={3000}
-						innerRadius={85}
-						outerRadius={110}
+						innerRadius='75%'
+						outerRadius='95%'
 						cx={'50%'}
 						cy={'50%'}
 						paddingAngle={3}
@@ -254,9 +293,9 @@ function DurationChart({ confirmedStays }) {
 					<Legend
 						verticalAlign='middle'
 						align='right'
-						width={'30%'}
+						width='40%'
 						layout='vertical'
-						iconSize={15}
+						iconSize={10}
 						iconType='circle'
 					/>
 				</PieChart>

@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
 const StyledStat = styled.div`
 	/* Box */
@@ -7,15 +8,42 @@ const StyledStat = styled.div`
 	border-radius: var(--border-radius-md);
 
 	padding: 1.6rem;
-	display: grid;
-	grid-template-columns: 6.4rem 1fr;
-	grid-template-rows: auto auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
 	column-gap: 1.6rem;
 	row-gap: 0.4rem;
+
+	${media.tb`
+	flex-direction: column;
+	`}
+
+	${(props) =>
+		props.stat === 1 &&
+		css`
+			grid-area: Stat1;
+		`}
+	${(props) =>
+		props.stat === 2 &&
+		css`
+			grid-area: Stat2;
+		`}
+		${(props) =>
+		props.stat === 3 &&
+		css`
+			grid-area: Stat3;
+		`}
+		${(props) =>
+		props.stat === 4 &&
+		css`
+			grid-area: Stat4;
+		`}
 `;
 
 const Icon = styled.div`
-	grid-row: 1 / -1;
+	min-width: 25%;
+	min-height: 25%;
 	aspect-ratio: 1;
 	border-radius: 50%;
 	display: flex;
@@ -32,27 +60,52 @@ const Icon = styled.div`
 	}
 `;
 
+const StyledBlock = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 0.5rem;
+`;
+
 const Title = styled.h5`
-	align-self: end;
 	font-size: 1.2rem;
 	text-transform: uppercase;
 	letter-spacing: 0.4px;
 	font-weight: 600;
 	color: var(--color-grey-500);
+
+	${media.xs`
+	font-size: 0.9rem;
+	`}
+
+	${media.xxs`
+	font-size: 0.7rem;
+	`}
 `;
 
 const Value = styled.p`
 	font-size: 2.4rem;
 	line-height: 1;
 	font-weight: 500;
+
+	${media.tb`
+	font-size: 1.4rem;
+	`}
+
+	${media.xxs`
+	font-size: 0.9rem;
+	`}
 `;
 
-function Stat({ icon, title, value, color }) {
+function Stat({ icon, title, value, color, stat }) {
 	return (
-		<StyledStat>
+		<StyledStat stat={stat}>
 			<Icon color={color}>{icon}</Icon>
-			<Title>{title}</Title>
-			<Value>{value}</Value>
+			<StyledBlock>
+				<Title>{title}</Title>
+				<Value>{value}</Value>
+			</StyledBlock>
 		</StyledStat>
 	);
 }

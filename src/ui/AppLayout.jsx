@@ -3,15 +3,46 @@ import { Outlet } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import Sidebar from './Sidebar';
+import Sidebar from './sidebar/Sidebar';
 import Header from './Header';
 import FullPageSpinner from './FullPageSpinner';
+import { useSidebar } from '../context/SidebarContext';
+import { media } from '../styles/breakpoints';
 
 const StyledAppLayout = styled.div`
 	display: grid;
-	grid-template-columns: 26rem 1fr;
 	grid-template-rows: auto 1fr;
+
+	${(props) =>
+		props.sidebar ? 'grid-template-columns: 24rem 1fr;' : 'grid-template-columns: 12rem 1fr;'};
 	height: 100dvh;
+
+	${media.sm`
+	grid-template-columns: 7rem 1fr;
+	`}
+
+	${media.xs`
+	grid-template-columns: 5rem 1fr;
+	`}
+
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: #e0e0e0;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: #888;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
 `;
 
 const Main = styled.main`
@@ -29,8 +60,10 @@ const Container = styled.div`
 `;
 
 function AppLayout() {
+	const { isOpen } = useSidebar();
+
 	return (
-		<StyledAppLayout>
+		<StyledAppLayout sidebar={isOpen ? 1 : 0}>
 			<Header />
 			<Sidebar />
 

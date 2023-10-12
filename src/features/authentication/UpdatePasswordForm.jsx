@@ -18,6 +18,9 @@ function UpdatePasswordForm() {
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
+			{/* Password forms should have (optionally hidden) username fields for accessibility */}
+			<input hidden readOnly type='text' autoComplete='username' value='{{...}}'></input>
+
 			<FormRow label='New password (min 8 chars)' error={errors?.password?.message}>
 				<Input
 					type='password'

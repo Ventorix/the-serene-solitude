@@ -9,12 +9,32 @@ import Stats from './Stats';
 import SalesChart from './SalesChart';
 import DurationChart from './DurationChart';
 import TodayActivity from '../check-in-out/TodayActivity';
+import { media } from '../../styles/breakpoints';
 
 const StyledDashboardLayout = styled.div`
 	display: grid;
+	grid-auto-columns: 1fr;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: auto 34rem auto;
+	grid-template-rows: 0.5fr 1.2fr 1.3fr;
 	gap: 2.4rem;
+	grid-template-areas:
+		'Stats Stats Stats Stats'
+		'Activities Activities PieChart PieChart'
+		'SalesChart SalesChart SalesChart SalesChart';
+
+	${media.tb`
+	grid-template-rows: 0.5fr 1fr 0.9fr 1.2fr;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+		'Stats Stats'
+		'Activities Activities'
+		'PieChart PieChart'
+		'SalesChart SalesChart';
+	`}
+
+	${media.xs`
+
+	`}
 `;
 
 function DashboardLayout() {
