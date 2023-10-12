@@ -6,7 +6,7 @@ import { format, isToday } from 'date-fns';
 import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEye, HiTrash } from 'react-icons/hi2';
 
 import Modal from '../../ui/Modal';
-import Tag from '../../ui/Tag';
+import BookingTag from './BookingTag';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
 import ConfirmDelete from '../../ui/ConfirmDelete';
@@ -116,7 +116,7 @@ function BookingRow({
 				</span>
 			</Stacked>
 
-			<Tag type={statusToTagName[status]}>{status.replace('-', ' ')}</Tag>
+			<BookingTag type={statusToTagName[status]}>{status.replace('-', ' ')}</BookingTag>
 
 			<Amount>{formatCurrency(totalPrice)}</Amount>
 
