@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 const StyledFormRow = styled.div`
 	display: grid;
@@ -25,6 +26,10 @@ const StyledFormRow = styled.div`
 		justify-content: flex-end;
 		gap: 1.2rem;
 	}
+
+	${media.tb`
+	grid-template-columns: 1fr;
+		`}
 `;
 
 const Label = styled.label`

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 const sizes = {
 	small: css`
@@ -28,6 +29,10 @@ const variations = {
 		&:hover {
 			background-color: var(--color-brand-700);
 		}
+
+		${media.xxs`
+		font-size: 1.1rem;
+	`}
 	`,
 	secondary: css`
 		color: var(--color-grey-600);
