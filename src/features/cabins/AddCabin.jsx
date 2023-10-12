@@ -1,10 +1,17 @@
+import styled from 'styled-components';
+
 import Button from '../../ui/Button';
 import CreateCabinForm from './CreateCabinForm';
 import Modal from '../../ui/Modal';
 
+const Footer = styled.footer`
+	display: flex;
+	justify-content: center;
+`;
+
 function AddCabin() {
 	return (
-		<div>
+		<Footer>
 			<Modal>
 				<Modal.Open opens='cabin-form'>
 					<Button>Add new cabin</Button>
@@ -13,7 +20,7 @@ function AddCabin() {
 					<CreateCabinForm />
 				</Modal.Window>
 			</Modal>
-		</div>
+		</Footer>
 	);
 }
 

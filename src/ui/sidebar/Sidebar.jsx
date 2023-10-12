@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
+
 import Logo from './Logo';
 import MainNav from './MainNav';
 import Toggler from './Toggler';
+
 import { useSidebar } from '../../context/SidebarContext';
-import { media } from '../../styles/breakpoints';
 
 const StyledSidebar = styled.aside`
 	background-color: var(--color-grey-0);
