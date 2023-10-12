@@ -21,6 +21,7 @@ const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 import { Toaster } from 'react-hot-toast';
 import DarkModeProvider from './context/DarkModeContext';
 import FullPageSpinner from './ui/FullPageSpinner';
+import SidebarProvider from './context/SidebarContext';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -43,7 +44,9 @@ function App() {
 							<Route
 								element={
 									<ProtectedRoute>
-										<AppLayout />
+										<SidebarProvider>
+											<AppLayout />
+										</SidebarProvider>
 									</ProtectedRoute>
 								}>
 								<Route index element={<Navigate replace to='dashboard' />} />

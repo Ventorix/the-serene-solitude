@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import Logo from './Logo';
 import MainNav from './MainNav';
+import Toggler from './Toggler';
+import { useSidebar } from '../../context/SidebarContext';
+import { media } from '../../styles/breakpoints';
 
 const StyledSidebar = styled.aside`
 	background-color: var(--color-grey-0);
@@ -11,12 +14,20 @@ const StyledSidebar = styled.aside`
 	display: flex;
 	flex-direction: column;
 	gap: 3.2rem;
+
+	${media.sm`
+	padding: 0;
+	`}
 `;
 
 function Sidebar() {
+	const { isOpen } = useSidebar();
+
 	return (
 		<StyledSidebar>
-			<Logo />
+			<Toggler />
+
+			{isOpen && <Logo />}
 			<MainNav />
 		</StyledSidebar>
 	);
