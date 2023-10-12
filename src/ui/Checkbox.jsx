@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 const StyledCheckbox = styled.div`
 	display: flex;
@@ -24,6 +25,14 @@ const StyledCheckbox = styled.div`
 		display: flex;
 		align-items: center;
 		gap: 0.8rem;
+
+		${media.xs`
+    font-size: 1.3rem;
+		`}
+
+		${media.xxs`
+    font-size: 1.1rem;
+		`}
 	}
 `;
 
