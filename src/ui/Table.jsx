@@ -1,5 +1,7 @@
 import { createContext, useContext } from 'react';
+
 import styled from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 const StyledTable = styled.div`
 	border: 1px solid var(--color-grey-200);
@@ -8,6 +10,22 @@ const StyledTable = styled.div`
 	background-color: var(--color-grey-0);
 	border-radius: 7px;
 	overflow: hidden;
+
+	${media.md`
+	font-size: 0.9rem;
+	`}
+
+	${media.sm`
+		font-size: 0.8rem;
+	`}
+
+	${media.xs`
+		font-size: 0.6rem;
+	`}
+
+	${media.xxs`
+		font-size: 0.5rem;
+	`}
 `;
 
 const CommonRow = styled.div`
@@ -16,6 +34,10 @@ const CommonRow = styled.div`
 	column-gap: 2.4rem;
 	align-items: center;
 	transition: none;
+
+	${media.md`
+	column-gap: 0.2rem;
+	`}
 `;
 
 const StyledHeader = styled(CommonRow)`
@@ -27,6 +49,18 @@ const StyledHeader = styled(CommonRow)`
 	letter-spacing: 0.4px;
 	font-weight: 600;
 	color: var(--color-grey-600);
+
+	${media.tb`
+	padding: 0.4rem 0.4rem;
+	`}
+
+	${media.xs`
+		font-size: 0.6rem;
+	`}
+
+	${media.xxs`
+		font-size: 0.5rem;
+	`}
 `;
 
 const StyledRow = styled(CommonRow)`
@@ -35,6 +69,10 @@ const StyledRow = styled(CommonRow)`
 	&:not(:last-child) {
 		border-bottom: 1px solid var(--color-grey-100);
 	}
+
+	${media.tb`
+	padding: 1.2rem 0.2rem;
+	`}
 `;
 
 const StyledBody = styled.section`
@@ -51,6 +89,10 @@ const Footer = styled.footer`
 	&:not(:has(*)) {
 		display: none;
 	}
+
+	${media.sm`
+	padding: 0.2rem;
+		`}
 `;
 
 const Empty = styled.p`

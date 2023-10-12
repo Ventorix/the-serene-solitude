@@ -17,14 +17,17 @@ const StyledAppLayout = styled.div`
 		props.sidebar ? 'grid-template-columns: 24rem 1fr;' : 'grid-template-columns: 12rem 1fr;'};
 	height: 100dvh;
 
-	${media.sm`
+	${media.tb`
 	grid-template-columns: 7rem 1fr;
 	`}
 
-	${media.xs`
+	${media.sm`
 	grid-template-columns: 5rem 1fr;
-	`}
+		`}
 
+	${media.xs`
+	`}
+	
 	::-webkit-scrollbar {
 		width: 10px;
 	}
@@ -49,6 +52,14 @@ const Main = styled.main`
 	background-color: var(--color-grey-50);
 	padding: 4rem 4.8rem 6.4rem;
 	overflow: auto;
+
+	${media.sm`
+	padding: 1rem 2rem 1.4rem;
+		`}
+
+	${media.xs`
+	padding: 1rem 0.5rem 1.4rem;
+		`}
 `;
 
 const Container = styled.div`
@@ -57,6 +68,10 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 3.2rem;
+
+	${media.sm`
+	gap: 1.2rem;
+		`}
 `;
 
 function AppLayout() {

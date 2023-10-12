@@ -15,8 +15,8 @@ const StyledSidebar = styled.aside`
 	flex-direction: column;
 	gap: 3.2rem;
 
-	${media.sm`
-	padding: 0;
+	${media.tb`
+	padding: 2.2rem 0;
 	`}
 `;
 

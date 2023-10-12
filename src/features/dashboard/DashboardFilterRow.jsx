@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
+
 import Heading from '../../ui/Heading';
 import DashboardFilter from './DashboardFilter';
-import { media } from '../../styles/breakpoints';
 
 const StyledFilterRow = styled.div`
 	display: flex;
@@ -17,7 +18,7 @@ const StyledFilterRow = styled.div`
 	`}
 `;
 
-function FilterRow() {
+function DashboardFilterRow() {
 	return (
 		<StyledFilterRow>
 			<Heading as='h1'>Dashboard</Heading>
@@ -26,4 +27,4 @@ function FilterRow() {
 	);
 }
 
-export default FilterRow;
+export default DashboardFilterRow;

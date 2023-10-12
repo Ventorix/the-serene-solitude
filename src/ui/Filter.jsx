@@ -1,4 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
+
+import { media } from '../styles/breakpoints';
 import styled, { css } from 'styled-components';
 
 const StyledFilter = styled.div`
@@ -20,6 +22,10 @@ const FilterButton = styled.button`
 	transition: all 0.3s;
 	/* To give the same height as select */
 	padding: 0.44rem 0.8rem;
+
+	${media.md`
+	font-size: 1rem;
+	`}
 
 	&:hover:not(:disabled) {
 		background-color: var(--color-brand-600);

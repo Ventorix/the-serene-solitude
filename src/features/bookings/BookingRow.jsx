@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
 import { useNavigate } from 'react-router-dom';
 import { format, isToday } from 'date-fns';
@@ -20,6 +21,18 @@ const Cabin = styled.div`
 	font-weight: 600;
 	color: var(--color-grey-600);
 	font-family: 'Sono';
+
+	${media.tb`
+		font-size: 1.3rem;
+	`}
+
+	${media.xs`
+		font-size: 1rem;
+	`}
+
+	${media.xxs`
+		font-size: 0.8rem;
+	`}
 `;
 
 const Stacked = styled.div`
@@ -34,6 +47,22 @@ const Stacked = styled.div`
 	& span:last-child {
 		color: var(--color-grey-500);
 		font-size: 1.2rem;
+
+		${media.tb`
+		font-size: 0.9rem;
+	`}
+
+		${media.sm`
+		font-size: 0.8rem;
+	`}
+
+	${media.xs`
+		font-size: 0.6rem;
+	`}
+
+	${media.xxs`
+		font-size: 0.5rem;
+	`}
 	}
 `;
 

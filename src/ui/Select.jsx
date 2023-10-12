@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 const StyledSelect = styled.select`
 	font-size: 1.4rem;
@@ -14,6 +15,10 @@ const StyledSelect = styled.select`
 	&:hover {
 		background-color: var(--color-grey-100);
 	}
+
+	${media.md`
+	font-size: 1rem;
+	`}
 `;
 
 function Select({ options, value, onChange, type }) {

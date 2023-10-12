@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 const Heading = styled.h1`
 	${(props) =>
@@ -13,6 +14,10 @@ const Heading = styled.h1`
 		css`
 			font-size: 2rem;
 			font-weight: 600;
+
+			${media.xxs`
+		font-size: 1.4rem;
+	`}
 		`}
     
     ${(props) =>
@@ -29,7 +34,6 @@ const Heading = styled.h1`
 			font-weight: 600;
 			text-align: center;
 		`}
-  margin-right: 10px;
 	line-height: 1.4;
 `;
 

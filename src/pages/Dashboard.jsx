@@ -1,10 +1,10 @@
 import DashboardLayout from '../features/dashboard/DashboardLayout';
-import FilterRow from '../features/dashboard/FilterRow';
+import DashboardFilterRow from '../features/dashboard/DashboardFilterRow';
 
 function Dashboard() {
 	return (
 		<>
-			<FilterRow />
+			<DashboardFilterRow />
 			<DashboardLayout />
 		</>
 	);
