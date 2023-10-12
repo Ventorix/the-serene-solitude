@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { media } from '../styles/breakpoints';
 
 const Tag = styled.span`
+	grid-area: Tag;
 	width: fit-content;
 	text-transform: uppercase;
 	font-size: 1.1rem;

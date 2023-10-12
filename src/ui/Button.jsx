@@ -54,6 +54,7 @@ const variations = {
 };
 
 const Button = styled.button`
+	grid-area: Button;
 	border: none;
 	border-radius: var(--border-radius-sm);
 	box-shadow: var(--shadow-sm);

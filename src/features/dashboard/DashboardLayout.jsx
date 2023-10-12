@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
 
 import { useResentBookings } from './useRecentBookings';
 import { useResentStays } from './useRecentStays';
@@ -9,7 +10,6 @@ import Stats from './Stats';
 import SalesChart from './SalesChart';
 import DurationChart from './DurationChart';
 import TodayActivity from '../check-in-out/TodayActivity';
-import { media } from '../../styles/breakpoints';
 
 const StyledDashboardLayout = styled.div`
 	display: grid;
@@ -23,17 +23,13 @@ const StyledDashboardLayout = styled.div`
 		'SalesChart SalesChart SalesChart SalesChart';
 
 	${media.tb`
-	grid-template-rows: 0.5fr 1fr 0.9fr 1.2fr;
+	grid-template-rows: 0.5fr 1.6fr 0.9fr 1.2fr;
 	grid-template-columns: 1fr 1fr;
 	grid-template-areas:
 		'Stats Stats'
 		'Activities Activities'
 		'PieChart PieChart'
 		'SalesChart SalesChart';
-	`}
-
-	${media.xs`
-
 	`}
 `;
 
