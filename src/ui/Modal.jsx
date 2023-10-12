@@ -4,6 +4,7 @@ import { useOutsideClick } from '../hooks/useOutsideClick';
 
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 const StyledModal = styled.div`
 	position: fixed;
@@ -16,6 +17,10 @@ const StyledModal = styled.div`
 	box-shadow: var(--shadow-lg);
 	padding: 3.2rem 4rem;
 	transition: all 0.5s;
+
+	${media.tb`
+	padding: 1.2rem 2rem;
+		`}
 `;
 
 const Overlay = styled.div`

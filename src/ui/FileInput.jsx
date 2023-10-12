@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 const FileInput = styled.input.attrs({ type: 'file' })`
 	font-size: 1.4rem;
@@ -20,6 +21,10 @@ const FileInput = styled.input.attrs({ type: 'file' })`
 			background-color: var(--color-brand-700);
 		}
 	}
+
+	${media.tb`
+	font-size: 0.9rem;
+		`}
 `;
 
 export default FileInput;
