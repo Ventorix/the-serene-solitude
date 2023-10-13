@@ -1,5 +1,8 @@
-import styled from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
+
+import styled from 'styled-components';
+import { media } from '../styles/breakpoints';
+
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import { PAGE_SIZE } from '../utils/constants';
 
@@ -17,6 +20,26 @@ const P = styled.p`
 	& span {
 		font-weight: 600;
 	}
+
+	${media.xs`
+		font-size: 0.9rem;
+	`}
+
+	${media.xxs`
+		font-size: 0.8rem;
+	`}
+`;
+
+const ButtonText = styled.span`
+	font-size: 1.4rem;
+
+	${media.xs`
+		font-size: 0.9rem;
+	`}
+
+	${media.xxs`
+		font-size: 0.8rem;
+	`}
 `;
 
 const Buttons = styled.div`
@@ -92,10 +115,10 @@ function Pagination({ count }) {
 
 			<Buttons>
 				<PaginationButton onClick={prevPage} disabled={currentPage === 1}>
-					<HiChevronLeft /> <span>Previous</span>
+					<HiChevronLeft /> <ButtonText>Previous</ButtonText>
 				</PaginationButton>
 				<PaginationButton onClick={nextPage} disabled={currentPage === pageCount}>
-					<span>Next</span> <HiChevronRight />
+					<ButtonText>Next</ButtonText> <HiChevronRight />
 				</PaginationButton>
 			</Buttons>
 		</StyledPagination>

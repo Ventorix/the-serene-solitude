@@ -1,9 +1,13 @@
+import { useCallback, useState } from 'react';
+
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
+import Skeleton from 'react-loading-skeleton';
+
 import Heading from '../../ui/Heading';
+
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Sector, Tooltip } from 'recharts';
 import { useDarkMode } from '../../context/DarkModeContext';
-import { useCallback, useState } from 'react';
-import { media } from '../../styles/breakpoints';
 
 const ChartBox = styled.div`
 	/* Box */
@@ -63,6 +67,33 @@ const ChartBox = styled.div`
 	}
 	`}
 `;
+
+const ChartLoaderBox = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+`;
+
+const LegendLoaderBox = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+`;
+
+const DurationChartLoader = () => {
+	return (
+		<ChartLoaderBox>
+			<Skeleton height='200px' width='200px' circle />
+
+			<LegendLoaderBox>
+				<Skeleton height='18px' width='108px' borderRadius={'12px'} />
+				<Skeleton height='18px' width='108px' borderRadius={'12px'} />
+				<Skeleton height='18px' width='108px' borderRadius={'12px'} />
+				<Skeleton height='18px' width='108px' borderRadius={'12px'} />
+			</LegendLoaderBox>
+		</ChartLoaderBox>
+	);
+};
 
 const startDataLight = [
 	{
@@ -220,7 +251,7 @@ const renderActiveShape = (props) => {
 	);
 };
 
-function DurationChart({ confirmedStays }) {
+function DurationChart({ confirmedStays = [], isLoading }) {
 	const [activeIndex, setActiveIndex] = useState(-1);
 
 	const { isDarkMode } = useDarkMode();
@@ -249,57 +280,61 @@ function DurationChart({ confirmedStays }) {
 		<ChartBox>
 			<Heading as='h2'>Stay duration summary</Heading>
 
-			<ResponsiveContainer width={'100%'} height={240}>
-				<PieChart>
-					<Pie
-						data={data}
-						nameKey={'duration'}
-						dataKey={'value'}
-						activeIndex={activeIndex}
-						activeShape={renderActiveShape}
-						animationDuration={3000}
-						innerRadius='75%'
-						outerRadius='95%'
-						cx={'50%'}
-						cy={'50%'}
-						paddingAngle={3}
-						onMouseEnter={onPieEnter}
-						onMouseLeave={onPieLeave}>
-						{data.map((entry, index) => (
-							<Cell
-								fill={entry.color}
-								stroke={entry.color}
-								key={entry.color}
-								style={{
-									filter: `drop-shadow(0px 0px 5px ${
-										startData.at((index + 1) % startData.length).color
-									}`,
-								}}
-							/>
-						))}
-					</Pie>
-					<Tooltip
-						content={
-							<CustomTooltip
-								totalValue={totalValue}
-								style={{
-									backgroundColor: colors.background,
-									color: colors.text,
-									border: `2px solid ${colors.text}`,
-								}}
-							/>
-						}
-					/>
-					<Legend
-						verticalAlign='middle'
-						align='right'
-						width='40%'
-						layout='vertical'
-						iconSize={10}
-						iconType='circle'
-					/>
-				</PieChart>
-			</ResponsiveContainer>
+			{isLoading ? (
+				<DurationChartLoader />
+			) : (
+				<ResponsiveContainer width={'100%'} height={240}>
+					<PieChart>
+						<Pie
+							data={data}
+							nameKey={'duration'}
+							dataKey={'value'}
+							activeIndex={activeIndex}
+							activeShape={renderActiveShape}
+							animationDuration={3000}
+							innerRadius='75%'
+							outerRadius='95%'
+							cx={'50%'}
+							cy={'50%'}
+							paddingAngle={3}
+							onMouseEnter={onPieEnter}
+							onMouseLeave={onPieLeave}>
+							{data.map((entry, index) => (
+								<Cell
+									fill={entry.color}
+									stroke={entry.color}
+									key={entry.color}
+									style={{
+										filter: `drop-shadow(0px 0px 5px ${
+											startData.at((index + 1) % startData.length).color
+										}`,
+									}}
+								/>
+							))}
+						</Pie>
+						<Tooltip
+							content={
+								<CustomTooltip
+									totalValue={totalValue}
+									style={{
+										backgroundColor: colors.background,
+										color: colors.text,
+										border: `2px solid ${colors.text}`,
+									}}
+								/>
+							}
+						/>
+						<Legend
+							verticalAlign='middle'
+							align='right'
+							width='40%'
+							layout='vertical'
+							iconSize={10}
+							iconType='circle'
+						/>
+					</PieChart>
+				</ResponsiveContainer>
+			)}
 		</ChartBox>
 	);
 }

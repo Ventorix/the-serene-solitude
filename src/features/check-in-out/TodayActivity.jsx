@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import Skeleton from 'react-loading-skeleton';
 
 import Heading from '../../ui/Heading';
 import Row from '../../ui/Row';
-import { useTodayActivity } from './useTodayActivity';
-import Spinner from '../../ui/Spinner';
 import TodayItem from './TodayItem';
+
+import { useTodayActivity } from './useTodayActivity';
 
 const StyledToday = styled.div`
 	/* Box */
@@ -41,6 +42,7 @@ const NoActivity = styled.p`
 
 function TodayActivity() {
 	const { isLoading, activities } = useTodayActivity();
+
 	return (
 		<StyledToday>
 			<Row type='horizontal'>
@@ -58,7 +60,13 @@ function TodayActivity() {
 					<NoActivity>No activity today...</NoActivity>
 				)
 			) : (
-				<Spinner />
+				<>
+					<Skeleton height='46px' width='100%' borderRadius={'12px'} />
+					<Skeleton height='46px' width='100%' borderRadius={'12px'} />
+					<Skeleton height='46px' width='100%' borderRadius={'12px'} />
+					<Skeleton height='46px' width='100%' borderRadius={'12px'} />
+					<Skeleton height='46px' width='100%' borderRadius={'12px'} />
+				</>
 			)}
 		</StyledToday>
 	);

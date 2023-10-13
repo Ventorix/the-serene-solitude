@@ -2,6 +2,7 @@ import { createContext, useContext } from 'react';
 
 import styled from 'styled-components';
 import { media } from '../styles/breakpoints';
+import Skeleton from 'react-loading-skeleton';
 
 const StyledTable = styled.div`
 	border: 1px solid var(--color-grey-200);
@@ -21,10 +22,6 @@ const StyledTable = styled.div`
 
 	${media.xs`
 		font-size: 0.6rem;
-	`}
-
-	${media.xxs`
-		font-size: 0.5rem;
 	`}
 `;
 
@@ -56,10 +53,6 @@ const StyledHeader = styled(CommonRow)`
 
 	${media.xs`
 		font-size: 0.6rem;
-	`}
-
-	${media.xxs`
-		font-size: 0.5rem;
 	`}
 `;
 
@@ -102,6 +95,30 @@ const Empty = styled.p`
 	margin: 2.4rem;
 `;
 
+const LoaderBox = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+`;
+
+const TableLoader = () => {
+	return (
+		<LoaderBox>
+			<Skeleton height='4rem' width='100%' borderRadius={'6px'} />
+			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+		</LoaderBox>
+	);
+};
+
 const TableContext = createContext();
 function Table({ columns, children }) {
 	return (
@@ -130,10 +147,14 @@ function Row({ children }) {
 	);
 }
 
-function Body({ data, render }) {
-	if (!data.length) return <Empty>No data to display at this time</Empty>;
-
-	return <StyledBody>{data.map(render)}</StyledBody>;
+function Body({ data, render, isLoading }) {
+	return (
+		<StyledBody>
+			{isLoading && <TableLoader />}
+			{data.map(render)}
+			{!isLoading && data?.length === 0 && <Empty>No data to display at this time</Empty>}
+		</StyledBody>
+	);
 }
 
 Table.Header = Header;

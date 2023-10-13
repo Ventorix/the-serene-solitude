@@ -1,6 +1,10 @@
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
+import Skeleton from 'react-loading-skeleton';
+
 import DashboardBox from './DashboardBox';
 import Heading from '../../ui/Heading';
+
 import {
 	Area,
 	AreaChart,
@@ -12,7 +16,6 @@ import {
 } from 'recharts';
 import { useDarkMode } from '../../context/DarkModeContext';
 import { eachDayOfInterval, format, isSameDay, subDays } from 'date-fns';
-import { media } from '../../styles/breakpoints';
 
 const StyledSalesChart = styled(DashboardBox)`
 	grid-area: SalesChart;
@@ -27,6 +30,10 @@ const StyledSalesChart = styled(DashboardBox)`
 		padding: 1.2rem;
 	`}
 `;
+
+const SalesChartLoader = () => {
+	return <Skeleton height='300px' width='100%' borderRadius={'12px'} />;
+};
 
 function CustomTooltip({ active, payload, label, style }) {
 	if (active && payload && payload.length) {
@@ -50,7 +57,7 @@ function CustomTooltip({ active, payload, label, style }) {
 	return null;
 }
 
-function SalesChart({ bookings, numDays }) {
+function SalesChart({ bookings = [], numDays = 0, isLoading }) {
 	const { isDarkMode } = useDarkMode();
 
 	const allDates = eachDayOfInterval({
@@ -91,47 +98,51 @@ function SalesChart({ bookings, numDays }) {
 				{format(allDates.at(-1), 'MMM dd yyyy')}
 			</Heading>
 
-			<ResponsiveContainer height={300} width={'100%'}>
-				<AreaChart data={data}>
-					<XAxis
-						dy={10}
-						dataKey={'label'}
-						tick={{ fill: colors.text }}
-						tickLine={{ stroke: colors.text }}
-					/>
-					<YAxis unit={'$'} tick={{ fill: colors.text }} tickLine={{ stroke: colors.text }} />
-					<CartesianGrid strokeDasharray={4} />
-					<Tooltip
-						content={
-							<CustomTooltip
-								style={{
-									backgroundColor: colors.background,
-									color: colors.text,
-									border: `2px solid ${colors.text}`,
-								}}
-							/>
-						}
-					/>
-					<Area
-						dataKey={'totalSales'}
-						type={'monotone'}
-						stroke={colors.totalSales.stroke}
-						fill={colors.totalSales.fill}
-						strokeWidth={2}
-						name={'Total sales'}
-						unit={'$'}
-					/>
-					<Area
-						dataKey={'extrasSales'}
-						type={'monotone'}
-						stroke={colors.extrasSales.stroke}
-						fill={colors.extrasSales.fill}
-						strokeWidth={2}
-						name={'Extras sales'}
-						unit={'$'}
-					/>
-				</AreaChart>
-			</ResponsiveContainer>
+			{isLoading ? (
+				<SalesChartLoader />
+			) : (
+				<ResponsiveContainer height={300} width={'100%'}>
+					<AreaChart data={data}>
+						<XAxis
+							dy={10}
+							dataKey={'label'}
+							tick={{ fill: colors.text }}
+							tickLine={{ stroke: colors.text }}
+						/>
+						<YAxis unit={'$'} tick={{ fill: colors.text }} tickLine={{ stroke: colors.text }} />
+						<CartesianGrid strokeDasharray={4} />
+						<Tooltip
+							content={
+								<CustomTooltip
+									style={{
+										backgroundColor: colors.background,
+										color: colors.text,
+										border: `2px solid ${colors.text}`,
+									}}
+								/>
+							}
+						/>
+						<Area
+							dataKey={'totalSales'}
+							type={'monotone'}
+							stroke={colors.totalSales.stroke}
+							fill={colors.totalSales.fill}
+							strokeWidth={2}
+							name={'Total sales'}
+							unit={'$'}
+						/>
+						<Area
+							dataKey={'extrasSales'}
+							type={'monotone'}
+							stroke={colors.extrasSales.stroke}
+							fill={colors.extrasSales.fill}
+							strokeWidth={2}
+							name={'Extras sales'}
+							unit={'$'}
+						/>
+					</AreaChart>
+				</ResponsiveContainer>
+			)}
 		</StyledSalesChart>
 	);
 }

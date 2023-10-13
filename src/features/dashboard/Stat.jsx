@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import { media } from '../../styles/breakpoints';
 
+import SpinnerMini from '../../ui/SpinnerMini';
+
 const StyledStat = styled.div`
 	/* Box */
 	background-color: var(--color-grey-0);
@@ -98,13 +100,13 @@ const Value = styled.p`
 	`}
 `;
 
-function Stat({ icon, title, value, color, stat }) {
+function Stat({ icon, title, value, color, stat, isLoading }) {
 	return (
 		<StyledStat stat={stat}>
 			<Icon color={color}>{icon}</Icon>
 			<StyledBlock>
 				<Title>{title}</Title>
-				<Value>{value}</Value>
+				{isLoading ? <SpinnerMini /> : <Value>{value}</Value>}
 			</StyledBlock>
 		</StyledStat>
 	);

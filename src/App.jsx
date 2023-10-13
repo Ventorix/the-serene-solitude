@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
+import 'react-loading-skeleton/dist/skeleton.css';
 import GlobalStyles from './styles/GlobalStyles';
 
 const AppLayout = lazy(() => import('./ui/AppLayout'));
@@ -19,9 +20,10 @@ const Login = lazy(() => import('./pages/Login'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 
 import { Toaster } from 'react-hot-toast';
-import DarkModeProvider from './context/DarkModeContext';
+import DarkModeProvider, { useDarkMode } from './context/DarkModeContext';
 import FullPageSpinner from './ui/FullPageSpinner';
 import SidebarProvider from './context/SidebarContext';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -32,6 +34,8 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+	const { isDarkMode } = useDarkMode();
+
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ReactQueryDevtools initialIsOpen={false} />
@@ -45,7 +49,11 @@ function App() {
 								element={
 									<ProtectedRoute>
 										<SidebarProvider>
-											<AppLayout />
+											<SkeletonTheme
+												baseColor={!isDarkMode ? '#efefef' : '#111827'}
+												highlightColor={!isDarkMode ? '#f3f4f6' : '#1f2937'}>
+												<AppLayout />
+											</SkeletonTheme>
 										</SidebarProvider>
 									</ProtectedRoute>
 								}>

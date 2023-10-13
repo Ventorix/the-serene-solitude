@@ -29,7 +29,7 @@ const StyledStats = styled.div`
 	`}
 `;
 
-function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
+function Stats({ bookings = [], confirmedStays = [], numDays = 0, cabinCount = 0, isLoading }) {
 	const numBookings = bookings.length;
 
 	const sales = bookings.reduce((acc, cur) => acc + cur.totalPrice, 0);
@@ -47,6 +47,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
 				icon={<HiOutlineBriefcase />}
 				value={numBookings}
 				stat={1}
+				isLoading={isLoading}
 			/>
 			<Stat
 				title={'Sales'}
@@ -54,6 +55,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
 				icon={<HiOutlineBanknotes />}
 				value={formatCurrency(sales)}
 				stat={2}
+				isLoading={isLoading}
 			/>
 			<Stat
 				title={'Check ins'}
@@ -61,6 +63,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
 				icon={<HiOutlineCalendarDays />}
 				value={checkIns}
 				stat={3}
+				isLoading={isLoading}
 			/>
 			<Stat
 				title={'Occupancy rate'}
@@ -68,6 +71,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
 				icon={<HiOutlineChartBar />}
 				value={Math.round(occupation * 100) + '%'}
 				stat={4}
+				isLoading={isLoading}
 			/>
 		</StyledStats>
 	);
