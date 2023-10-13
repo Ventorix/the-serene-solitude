@@ -20,10 +20,9 @@ const Login = lazy(() => import('./pages/Login'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 
 import { Toaster } from 'react-hot-toast';
-import DarkModeProvider, { useDarkMode } from './context/DarkModeContext';
+import DarkModeProvider from './context/DarkModeContext';
 import FullPageSpinner from './ui/FullPageSpinner';
 import SidebarProvider from './context/SidebarContext';
-import { SkeletonTheme } from 'react-loading-skeleton';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -34,8 +33,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-	const { isDarkMode } = useDarkMode();
-
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ReactQueryDevtools initialIsOpen={false} />
@@ -49,11 +46,9 @@ function App() {
 								element={
 									<ProtectedRoute>
 										<SidebarProvider>
-											<SkeletonTheme
-												baseColor={!isDarkMode ? '#efefef' : '#111827'}
-												highlightColor={!isDarkMode ? '#f3f4f6' : '#1f2937'}>
+											<DarkModeProvider>
 												<AppLayout />
-											</SkeletonTheme>
+											</DarkModeProvider>
 										</SidebarProvider>
 									</ProtectedRoute>
 								}>

@@ -9,6 +9,8 @@ import Header from './Header';
 import FullPageSpinner from './FullPageSpinner';
 
 import { useSidebar } from '../context/SidebarContext';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import { useDarkMode } from '../context/DarkModeContext';
 
 const StyledAppLayout = styled.div`
 	display: grid;
@@ -73,6 +75,7 @@ const Container = styled.div`
 
 function AppLayout() {
 	const { isOpen } = useSidebar();
+	const { isDarkMode } = useDarkMode();
 
 	return (
 		<StyledAppLayout sidebar={isOpen ? 1 : 0}>
@@ -82,7 +85,11 @@ function AppLayout() {
 			<Main>
 				<Container>
 					<Suspense fallback={<FullPageSpinner />}>
-						<Outlet />
+						<SkeletonTheme
+							baseColor={!isDarkMode ? '#efefef' : '#111827'}
+							highlightColor={!isDarkMode ? '#f3f4f6' : '#1f2937'}>
+							<Outlet />
+						</SkeletonTheme>
 					</Suspense>
 				</Container>
 			</Main>

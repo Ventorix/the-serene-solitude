@@ -86,10 +86,7 @@ const DurationChartLoader = () => {
 			<Skeleton height='200px' width='200px' circle />
 
 			<LegendLoaderBox>
-				<Skeleton height='18px' width='108px' borderRadius={'12px'} />
-				<Skeleton height='18px' width='108px' borderRadius={'12px'} />
-				<Skeleton height='18px' width='108px' borderRadius={'12px'} />
-				<Skeleton height='18px' width='108px' borderRadius={'12px'} />
+				<Skeleton count={4} height='18px' width='108px' borderRadius={'12px'} />
 			</LegendLoaderBox>
 		</ChartLoaderBox>
 	);

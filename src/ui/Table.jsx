@@ -105,16 +105,7 @@ const LoaderBox = styled.div`
 const TableLoader = () => {
 	return (
 		<LoaderBox>
-			<Skeleton height='4rem' width='100%' borderRadius={'6px'} />
-			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
-			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
-			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
-			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
-			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
-			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
-			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
-			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
-			<Skeleton height='48px' width='100%' borderRadius={'6px'} />
+			<Skeleton count={10} height='4rem' width='100%' borderRadius={'6px'} />
 		</LoaderBox>
 	);
 };
