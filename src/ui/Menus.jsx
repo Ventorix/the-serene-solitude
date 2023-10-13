@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { HiEllipsisVertical } from 'react-icons/hi2';
+
 import styled from 'styled-components';
+import { HiEllipsisVertical } from 'react-icons/hi2';
 import { useOutsideClick } from '../hooks/useOutsideClick';
 
 const Menu = styled.div`
@@ -30,7 +30,8 @@ const StyledToggle = styled.button`
 `;
 
 const StyledList = styled.ul`
-	position: fixed;
+	position: absolute;
+	z-index: 9999;
 
 	background-color: var(--color-grey-0);
 	box-shadow: var(--shadow-md);
@@ -87,11 +88,10 @@ function List({ id, children }) {
 
 	if (openId !== id) return null;
 
-	return createPortal(
+	return (
 		<StyledList ref={ref} position={position}>
 			{children}
-		</StyledList>,
-		document.body,
+		</StyledList>
 	);
 }
 
@@ -123,7 +123,7 @@ function Button({ children, icon, onClick }) {
 	}
 	return (
 		<li>
-			<StyledButton onClick={handleClick}>
+			<StyledButton type='button' onClick={handleClick}>
 				{icon}
 				<span>{children}</span>
 			</StyledButton>

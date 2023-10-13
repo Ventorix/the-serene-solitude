@@ -1,0 +1,2 @@
+User-agent: *
+Allow: https://the-serene-solitude.vercel.app/

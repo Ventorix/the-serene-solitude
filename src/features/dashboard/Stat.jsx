@@ -70,7 +70,7 @@ const StyledBlock = styled.div`
 	gap: 0.5rem;
 `;
 
-const Title = styled.h5`
+const Title = styled.h2`
 	font-size: 1.2rem;
 	text-transform: uppercase;
 	letter-spacing: 0.4px;

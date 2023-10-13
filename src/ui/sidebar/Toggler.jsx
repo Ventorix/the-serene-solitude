@@ -19,7 +19,10 @@ function Toggler() {
 
 	return (
 		<StyledToggler>
-			<ButtonIcon onClick={() => toggleSidebarCollapse((open) => !open)}>
+			<ButtonIcon
+				title={isOpen ? 'Collapse' : 'Open'}
+				onClick={() => toggleSidebarCollapse((open) => !open)}
+				aria-label='Menu Toggler'>
 				{isOpen ? <HiArrowLeft /> : <HiArrowRight />}
 			</ButtonIcon>
 		</StyledToggler>
