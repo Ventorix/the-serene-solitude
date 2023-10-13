@@ -1,5 +1,8 @@
 import { NavLink } from 'react-router-dom';
+
 import styled from 'styled-components';
+import { media } from '../../styles/breakpoints';
+
 import {
 	HiOutlineHome,
 	HiOutlineCalendarDays,
@@ -7,7 +10,7 @@ import {
 	HiOutlineHomeModern,
 	HiOutlineUsers,
 } from 'react-icons/hi2';
-import { media } from '../../styles/breakpoints';
+
 import { useSidebar } from '../../context/SidebarContext';
 
 const NavList = styled.ul`
@@ -17,7 +20,12 @@ const NavList = styled.ul`
 `;
 
 const NavTitle = styled.span`
-	${media.lg`
+	${media.tb`
+		font-size: 1.4rem;
+	`}
+
+	${media.sm`
+		display: none;
 	`}
 `;
 
@@ -68,37 +76,38 @@ const StyledNavLink = styled(NavLink)`
 
 function MainNav() {
 	const { isOpen } = useSidebar();
+
 	return (
 		<nav>
 			<NavList>
 				<li>
 					<StyledNavLink title='Home' to='/dashboard'>
 						<HiOutlineHome />
-						{isOpen && <NavTitle>Home</NavTitle>}
+						<NavTitle>Home</NavTitle>
 					</StyledNavLink>
 				</li>
 				<li>
 					<StyledNavLink title='Bookings' to='/bookings'>
 						<HiOutlineCalendarDays />
-						{isOpen && <NavTitle>Bookings</NavTitle>}
+						<NavTitle>Bookings</NavTitle>
 					</StyledNavLink>
 				</li>
 				<li>
 					<StyledNavLink title='Cabins' to='/cabins'>
 						<HiOutlineHomeModern />
-						{isOpen && <NavTitle>Cabins</NavTitle>}
+						<NavTitle>Cabins</NavTitle>
 					</StyledNavLink>
 				</li>
 				<li>
 					<StyledNavLink title='Users' to='/users'>
 						<HiOutlineUsers />
-						{isOpen && <NavTitle>Users</NavTitle>}
+						<NavTitle>Users</NavTitle>
 					</StyledNavLink>
 				</li>
 				<li>
 					<StyledNavLink title='Settings' to='/settings'>
 						<HiOutlineCog6Tooth />
-						{isOpen && <NavTitle>Settings</NavTitle>}
+						<NavTitle>Settings</NavTitle>
 					</StyledNavLink>
 				</li>
 			</NavList>

@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react';
 const SidebarContext = createContext();
 
 function SidebarProvider({ children }) {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
 
 	function toggleSidebarCollapse() {
 		setIsOpen((isOpen) => !isOpen);

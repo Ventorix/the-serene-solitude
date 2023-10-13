@@ -42,6 +42,22 @@ const Cabin = styled.div`
 	font-weight: 600;
 	color: var(--color-grey-600);
 	font-family: 'Sono';
+
+	${media.tb`
+	font-size: 1.5rem;
+	`}
+
+	${media.sm`
+	font-size: 1.4rem;
+	`}
+
+	${media.xs`
+	font-size: 1.3rem;
+	`}
+
+	${media.xxs`
+	font-size: 1.2rem;
+	`}
 `;
 
 const Price = styled.div`

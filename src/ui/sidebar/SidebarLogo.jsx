@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { useDarkMode } from '../../context/DarkModeContext';
 import { media } from '../../styles/breakpoints';
+
+import { useDarkMode } from '../../context/DarkModeContext';
 
 const StyledLogo = styled.div`
 	text-align: center;
@@ -13,9 +14,25 @@ const Img = styled.img`
 	${media.lg`
 	height:11.6rem;
 	`}
+
+	${media.tb`
+	height:6.6rem;
+	`}
+
+	${media.sm`
+		height:4.6rem;
+	`}
+
+	${media.xs`
+		height:3.6rem;
+	`}
+
+	${media.xxs`
+		height:2.6rem;
+	`}
 `;
 
-function Logo() {
+function SidebarLogo() {
 	const { isDarkMode } = useDarkMode();
 
 	return (
@@ -25,4 +42,4 @@ function Logo() {
 	);
 }
 
-export default Logo;
+export default SidebarLogo;

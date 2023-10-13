@@ -2,27 +2,24 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import styled from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 import Sidebar from './sidebar/Sidebar';
 import Header from './Header';
 import FullPageSpinner from './FullPageSpinner';
+
 import { useSidebar } from '../context/SidebarContext';
-import { media } from '../styles/breakpoints';
 
 const StyledAppLayout = styled.div`
 	display: grid;
 	grid-template-rows: auto 1fr;
-
-	${(props) =>
-		props.sidebar ? 'grid-template-columns: 24rem 1fr;' : 'grid-template-columns: 12rem 1fr;'};
+	grid-template-columns: auto 1fr;
 	height: 100dvh;
 
 	${media.tb`
-	grid-template-columns: 7rem 1fr;
 	`}
 
 	${media.sm`
-	grid-template-columns: 5rem 1fr;
 		`}
 
 	${media.xs`
