@@ -112,6 +112,7 @@ function ReactSelect({ options, value, onChange, type }) {
 			options={options}
 			value={value}
 			onChange={onChange}
+			isSearchable={false}
 			classNamePrefix={'react-select'}
 			title='Sort by'
 			aria-label='Sort by'
