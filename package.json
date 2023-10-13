@@ -21,6 +21,7 @@
     "react-icons": "^4.11.0",
     "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.16.0",
+    "react-select": "^5.7.7",
     "recharts": "^2.8.0",
     "styled-components": "^6.0.8"
   },

@@ -6,7 +6,7 @@ const TableOperations = styled.div`
 	align-items: center;
 	gap: 1.6rem;
 
-	${media.sm`
+	${media.tb`
     flex-direction: column;
 	`}
 `;

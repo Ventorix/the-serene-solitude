@@ -24,7 +24,7 @@ const FilterButton = styled.button`
 	padding: 0.44rem 0.8rem;
 
 	${media.md`
-	font-size: 1rem;
+	font-size: 1.2rem;
 	`}
 
 	&:hover:not(:disabled) {
