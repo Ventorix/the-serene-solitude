@@ -8,6 +8,8 @@
    The Serene Solitude is an internal hotel management system built with React Query, Supabase, Styled Components, and many other technologies. It allows employees to manage everything about hotel bookings, cabins, and guests.
   </p>
 
+## [`👉🏻 Live Link 👈🏻`](https://the-serene-solitude.vercel.app/)
+
 <p>
   <a href="https://github.com/sudeepmahato16/the-wild-oasis/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/Ventorix/the-serene-solitude" alt="contributors" />
@@ -30,8 +32,6 @@
 </p>
    
 <h4>
-    <a href="https://the-serene-solitude.vercel.app/">View Demo</a>
-  <span> · </span>
     <a href="https://github.com/Ventorix/the-serene-solitude/blob/main/README.md">Documentation</a>
   <span> · </span>
     <a href="https://github.com/Ventorix/the-serene-solitude/issues/">Report Bug</a>
@@ -42,6 +42,17 @@
 
 </br>
 
+## Tech Stack
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+&nbsp;&nbsp;![Supabase](https://img.shields.io/badge/Supabase-000000?style=for-the-badge&logo=Supabase&logoColor=white)
+&nbsp;&nbsp;![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+&nbsp;&nbsp;![React Hook Form](https://img.shields.io/badge/React_Hook_Form-000000?style=for-the-badge&logo=reacthookform&logoColor=white)
+&nbsp;&nbsp;![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+&nbsp;&nbsp;![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+&nbsp;&nbsp;![React Icons](https://img.shields.io/badge/React_Icons-5588FF?style=for-the-badge&logo=React_Icons&logoColor=black)
+&nbsp;&nbsp;![React Hot Toast](https://img.shields.io/badge/React_Hot_Toast-008000?style=for-the-badge&logo=React_Hot_Toast&logoColor=white)
+&nbsp;&nbsp;![Recharts](https://img.shields.io/badge/Recharts-0081CB?style=for-the-badge&logo=Recharts&logoColor=white)
 ## Features
 
 1. **User Authentication and Signup:**
