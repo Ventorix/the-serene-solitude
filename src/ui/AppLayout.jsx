@@ -11,6 +11,7 @@ import FullPageSpinner from './FullPageSpinner';
 import { useSidebar } from '../context/SidebarContext';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { useDarkMode } from '../context/DarkModeContext';
+import { useSwipe } from '../hooks/useSwipe';
 
 const StyledAppLayout = styled.div`
 	display: grid;
@@ -18,15 +19,6 @@ const StyledAppLayout = styled.div`
 	grid-template-columns: auto 1fr;
 	height: 100dvh;
 
-	${media.tb`
-	`}
-
-	${media.sm`
-		`}
-
-	${media.xs`
-	`}
-	
 	::-webkit-scrollbar {
 		width: 10px;
 	}
@@ -74,15 +66,22 @@ const Container = styled.div`
 `;
 
 function AppLayout() {
-	const { isOpen } = useSidebar();
 	const { isDarkMode } = useDarkMode();
+	const { isOpen, toggleSidebarCollapse } = useSidebar();
+	const { onTouchStart, onTouchEnd } = useSwipe(
+		{
+			leftAction: toggleSidebarCollapse,
+			rightAction: toggleSidebarCollapse,
+		},
+		{ leftCondition: isOpen, rightCondition: !isOpen },
+	);
 
 	return (
-		<StyledAppLayout sidebar={isOpen ? 1 : 0}>
+		<StyledAppLayout>
 			<Header />
 			<Sidebar />
 
-			<Main>
+			<Main onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
 				<Container>
 					<Suspense fallback={<FullPageSpinner />}>
 						<SkeletonTheme
