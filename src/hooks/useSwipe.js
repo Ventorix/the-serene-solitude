@@ -4,8 +4,9 @@ export function useSwipe(
 	{ upAction, downAction, leftAction, rightAction },
 	{ upCondition, downCondition, leftCondition, rightCondition },
 	minSwipeDistance = 50,
+	swipeMaxTimeMs = 1000,
 ) {
-	const touchCoordsRef = useRef({ touchStart: { x: 0, y: 0 } });
+	const touchCoordsRef = useRef({ touchStart: { x: 0, y: 0, time: Date.now() } });
 
 	const funcRef = useRef({ upAction, downAction, leftAction, rightAction });
 	funcRef.current = {
@@ -19,6 +20,7 @@ export function useSwipe(
 	const onTouchStart = (e) => {
 		touchCoordsRef.current.touchStart.x = e.targetTouches[0].clientX;
 		touchCoordsRef.current.touchStart.y = e.targetTouches[0].clientY;
+		touchCoordsRef.current.touchStart.time = Date.now();
 	};
 
 	const onTouchEnd = (e) => {
@@ -28,6 +30,10 @@ export function useSwipe(
 
 		const touchStartX = touchCoordsRef.current.touchStart.x;
 		const touchStartY = touchCoordsRef.current.touchStart.y;
+
+		// Check if the swipe time has expired
+		const elapsedTime = Date.now() - touchCoordsRef.current.touchStart.time;
+		if (elapsedTime > swipeMaxTimeMs) return;
 
 		const distanceX = touchStartX - touchEndX;
 		const distanceY = touchStartY - touchEndY;
