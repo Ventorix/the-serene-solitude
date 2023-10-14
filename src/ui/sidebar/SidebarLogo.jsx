@@ -39,7 +39,7 @@ function SidebarLogo() {
 	const { isDarkMode } = useDarkMode();
 
 	return (
-		<StyledLogo to={'/'}>
+		<StyledLogo to={'/dashboard'}>
 			<Img src={isDarkMode ? '/logo-dark.svg' : '/logo-light.svg'} alt='Logo' />
 		</StyledLogo>
 	);

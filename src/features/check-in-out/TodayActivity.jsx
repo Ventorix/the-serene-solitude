@@ -61,7 +61,7 @@ function TodayActivity() {
 				)
 			) : (
 				<>
-					<Skeleton count={5} height='46px' width='100%' borderRadius={'12px'} />
+					<Skeleton height='5rem' count={5} width='100%' borderRadius={'12px'} />
 				</>
 			)}
 		</StyledToday>

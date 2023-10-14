@@ -99,15 +99,22 @@ const LoaderBox = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+`;
+
+const StyledSkeleton = styled(Skeleton)`
+	height: 5rem;
+
+	${media.md`
+		height: 3.5rem;
+	`}
+
+	${media.tb`
+		height: 3.2rem;
+	`}
 `;
 
 const TableLoader = () => {
-	return (
-		<LoaderBox>
-			<Skeleton count={10} height='4rem' width='100%' borderRadius={'6px'} />
-		</LoaderBox>
-	);
+	return <StyledSkeleton wrapper={LoaderBox} count={10} width='100%' borderRadius={'6px'} />;
 };
 
 const TableContext = createContext();
