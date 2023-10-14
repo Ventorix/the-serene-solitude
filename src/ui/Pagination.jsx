@@ -53,7 +53,7 @@ const PaginationButton = styled.button`
 	color: ${(props) => (props.active ? ' var(--color-brand-50)' : 'inherit')};
 	border: none;
 	border-radius: var(--border-radius-sm);
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 1.4rem;
 
 	display: flex;
@@ -69,6 +69,10 @@ const PaginationButton = styled.button`
 
 	&:has(span:first-child) {
 		padding-right: 0.4rem;
+	}
+
+	&:disabled {
+		color: var(--color-grey-400);
 	}
 
 	& svg {

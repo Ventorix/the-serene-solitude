@@ -14,7 +14,7 @@ function AddCabin() {
 		<Footer>
 			<Modal>
 				<Modal.Open opens='cabin-form'>
-					<Button>Add new cabin</Button>
+					<Button>Create new cabin</Button>
 				</Modal.Open>
 				<Modal.Window name='cabin-form'>
 					<CreateCabinForm />

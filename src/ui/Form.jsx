@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { media } from '../styles/breakpoints';
 
 const Form = styled.form`
 	${(props) =>
@@ -15,7 +16,30 @@ const Form = styled.form`
 	${(props) =>
 		props.type === 'modal' &&
 		css`
-			max-width: 80rem;
+			width: 80rem;
+
+			${media.md`
+				width: 60rem;
+			`}
+
+			${media.tb`
+				width: 50rem;
+			`}
+
+			${media.sm`
+				width: 40rem;
+				font-size: 1.2rem;
+			`}
+
+			${media.xs`
+				width: 33rem;
+				font-size: 1.2rem;
+			`}
+
+			${media.xxs`
+				width: 25rem;
+				font-size: 1.1rem;
+			`}
 		`}
     
   overflow: hidden;

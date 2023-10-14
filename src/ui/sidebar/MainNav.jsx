@@ -11,8 +11,6 @@ import {
 	HiOutlineUsers,
 } from 'react-icons/hi2';
 
-import { useSidebar } from '../../context/SidebarContext';
-
 const NavList = styled.ul`
 	display: flex;
 	flex-direction: column;
@@ -75,8 +73,6 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 function MainNav() {
-	const { isOpen } = useSidebar();
-
 	return (
 		<nav>
 			<NavList>

@@ -102,7 +102,6 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 				<Input
 					type='number'
 					id='discount'
-					defaultValue={0}
 					min='0'
 					disabled={isWorking}
 					{...register('discount', {
@@ -142,7 +141,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 					onClick={() => onCloseModal?.()}>
 					Cancel
 				</Button>
-				<Button disabled={isWorking}>{isEditSession ? 'Edit cabin' : 'Add new cabin'}</Button>
+				<Button disabled={isWorking}>{isEditSession ? 'Edit cabin' : 'Create new cabin'}</Button>
 			</FormRow>
 		</Form>
 	);

@@ -26,6 +26,7 @@ const device = {
 	xs: '475px', // for small screen mobile
 	sm: '600px', // for mobile screen
 	tb: '768px', // for tablets
+	xtb: '920px', // for tablets
 	md: '1024px', // for tablets
 	lg: '1280px', // for laptops
 	xl: '1440px', // for desktop / monitors
@@ -50,6 +51,11 @@ export const media = {
 	`,
 	tb: (...args) => css`
 		@media (max-width: ${device.tb}) {
+			${css(...args)};
+		}
+	`,
+	xtb: (...args) => css`
+		@media (max-width: ${device.xtb}) {
 			${css(...args)};
 		}
 	`,

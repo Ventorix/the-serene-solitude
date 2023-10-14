@@ -12,12 +12,21 @@ const sizes = {
 	medium: css`
 		font-size: 1.4rem;
 		padding: 1.2rem 1.6rem;
-		font-weight: 500;
+		font-weight: 700;
+
+		${media.xs`
+			font-size: 1.1rem;
+		`}
+
+		${media.xxs`
+			font-size: 0.9rem;
+			padding: 0.8rem 1.0rem;
+		`}
 	`,
 	large: css`
 		font-size: 1.6rem;
 		padding: 1.2rem 2.4rem;
-		font-weight: 500;
+		font-weight: 600;
 	`,
 };
 
@@ -29,10 +38,6 @@ const variations = {
 		&:hover {
 			background-color: var(--color-brand-700);
 		}
-
-		${media.xxs`
-		font-size: 1.1rem;
-	`}
 	`,
 	secondary: css`
 		color: var(--color-grey-600);

@@ -17,7 +17,7 @@ const FilterButton = styled.button`
 	background-color: var(--color-grey-0);
 	border: none;
 	border-radius: var(--border-radius-sm);
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 1.4rem;
 	transition: all 0.3s;
 	/* To give the same height as select */

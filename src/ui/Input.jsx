@@ -9,8 +9,8 @@ const Input = styled.input`
 	box-shadow: var(--shadow-sm);
 
 	${media.tb`
-	padding: 0.2rem 1.2rem;
-		`}
+		padding: 0.4rem 1.2rem;
+	`}
 `;
 
 export default Input;

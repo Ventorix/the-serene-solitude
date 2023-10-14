@@ -27,9 +27,32 @@ const StyledFormRow = styled.div`
 		gap: 1.2rem;
 	}
 
+	${media.md`
+		grid-template-columns: 15rem 25rem;
+	`}
+
+	${media.xtb`
+		grid-template-columns: 14rem 1fr;
+	`}
+
 	${media.tb`
-	grid-template-columns: 1fr;
-		`}
+		grid-template-columns: 10rem 18rem;
+	`}
+
+	${media.sm`
+		gap: 2.0rem;
+		grid-template-columns: 1fr;
+	`}
+
+	${media.xs`
+		gap: 1.6rem;
+		padding: 1.3rem 2.2rem;
+	`}
+
+	${media.xs`
+		gap: 1.4rem;
+		padding: 1.1rem 1.7rem;
+	`}
 `;
 
 const Label = styled.label`
